@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  consumer
+  clinician
+  admin
+}
+
+enum ChatMode {
+  consumer
+  clinician
+}
+
+model User {
+  id        String   @id @default(cuid())
+  role      Role     @default(consumer)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  consents       Consent[]
+  conversations  Conversation[]
+  auditLogs      AuditLog[]
+}
+
+model Consent {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  storePHI  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Conversation {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  mode      ChatMode
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages Message[]
+}
+
+model Message {
+  id             String   @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  senderRole     String   // "user" | "assistant"
+  contentEncrypted String?
+  contentDeidentified String
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action    String
+  meta       String?  // Keep simple for MVP; consider Json later.
+  createdAt DateTime @default(now())
+}
+
+model SourceVersion {
+  id        String   @id @default(cuid())
+  version   String   @unique
+  createdAt DateTime @default(now())
+}
+

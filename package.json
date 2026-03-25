@@ -1,0 +1,41 @@
+{
+  "name": "llm-project",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run -w apps/api dev & npm run -w apps/web dev",
+    "build": "npm run -w apps/api build && npm run -w apps/web build",
+    "typecheck": "npm run -w apps/api typecheck && npm run -w apps/web typecheck",
+    "lint": "npm run -w apps/api lint && npm run -w apps/web lint",
+    "test": "npm run -w apps/api test",
+    "prisma": "npm run -w apps/api prisma"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "overrides": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.5.0",
+    "@types/pg": "^8.20.0",
+    "dotenv": "^17.3.1",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "jose": "^6.2.2",
+    "prettier": "^3.8.1",
+    "prisma": "^7.5.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
+    "zod": "^4.3.6"
+  }
+}

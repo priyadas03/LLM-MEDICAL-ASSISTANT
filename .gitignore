@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+
+# Environment and secrets (keep *.env.example tracked)
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Logs and debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+*.swp
+*.swo
+
+# TypeScript
+*.tsbuildinfo
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Next.js — commit next-env.d.ts in apps/web for TypeScript; do not ignore it
+
+# Testing
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+
+# Prisma / local DB (SQLite dev)
+*.db
+*.db-journal
+apps/api/prisma/dev.db*
+
+# Misc caches
+.cache/
+.turbo/
+.eslintcache
+
+# Optional: local vector / RAG data (uncomment if indexes are large or machine-specific)
+# apps/api/data/
