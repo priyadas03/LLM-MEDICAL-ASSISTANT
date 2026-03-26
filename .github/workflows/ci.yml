@@ -14,6 +14,8 @@ jobs:
           cache: "npm"
       - name: Install
         run: npm ci
+      - name: Build shared package
+        run: npm run -w @medical/shared build
       - name: Ingest RAG sources
         run: npm run -w @apps/api ingest
       - name: Typecheck

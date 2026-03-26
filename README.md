@@ -27,9 +27,11 @@ From the repository root:
 npm install
 ```
 
-### 2. Build the shared package
+### 2. Shared package (`@medical/shared`)
 
-Apps depend on `@medical/shared` via `dist/`. After clone or dependency changes:
+Apps import `@medical/shared` from `dist/`. After **`npm install`** or **`npm ci`**, the root **`postinstall`** script runs `npm run -w @medical/shared build` so `dist/` exists (required for ingest, API, and web).
+
+If you used **`npm ci --ignore-scripts`**, build it once:
 
 ```bash
 npm run -w @medical/shared build
